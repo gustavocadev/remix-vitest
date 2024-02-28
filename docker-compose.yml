@@ -3,10 +3,11 @@ version: '3.9'
 services:
   dbtest:
     image: postgres:15.3
+    env_file: .env.test
     restart: always
     container_name: integration-tests
     ports:
-      - '5433:5433'
+      - '5430:5430'
     environment:
       POSTGRES_USER: prisma
       POSTGRES_PASSWORD: prisma
@@ -14,11 +15,11 @@ services:
 
   dblocal:
     image: postgres:15.3
-    env_file: .env
+    env_file: .env.local
     restart: always
     container_name: local-db
     ports:
-      - '5432:5432'
+      - '5433:5433'
     environment:
       POSTGRES_USER: prisma
       POSTGRES_PASSWORD: prisma
